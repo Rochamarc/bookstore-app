@@ -8,9 +8,15 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
         fields = [ 'name', 'nationality' ]
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):
+    author_name = serializers.ReadOnlyField(source='author.name')
+    author_nationality = serializers.ReadOnlyField(source='author.nationality')
+    publisher_name = serializers.ReadOnlyField(source='publisher.name')
+    format_name = serializers.ReadOnlyField(source='format.name')
+    
     class Meta:
         model = Book
-        fields = [ 'title', 'published_at', 'isbn', 'author', 'format', 'publisher', 'was_read' ]
+        fields = "__all__" 
+        # [ 'title', 'published_at', 'isbn', 'author', 'format', 'publisher', 'was_read', 'author_name' ]
 
 class FormatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
