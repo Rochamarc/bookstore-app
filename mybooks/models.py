@@ -23,7 +23,7 @@ class Format(models.Model):
     
 
 class Literature(models.Model):
-    value = models.CharField(max_length=200, null=False)
+    value = models.CharField(max_length=200, null=False, unique=True)
 
     def __str__(self) -> str:
         return f'{self.value} LITERATURE'
@@ -50,3 +50,16 @@ class Classification(models.Model):
 
     def __str__(self) -> str:
         return self.book.title
+
+# Nao sei se vou manter esse padrão
+# talvez fosse o caso de se criar esse modelo de generos
+# e um outro modelo que recebe duas foreign keys. O mesmo se aplica para o classification.
+# essa prática também vai facilitar caso eu resolva inserir um sistema de usuarios onde 
+# cada um recebe uma classificação por livro
+class Genre(models.Model):
+    # GenreTypes = models.TextChoices('GenreTypes', 'Horror Fiction NonFiction Thriller Fantasy Romance Poetry Philosophy Biography History Travel') 
+    # book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    genre = models.CharField(blank=False, null=False, max_length=30, unique=True)
+
+    def __str__(self) -> str:
+        return self.genre
