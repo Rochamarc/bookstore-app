@@ -5,7 +5,7 @@ from .models import Author, Book, Format, Publisher
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Author
-        fields = [ 'name', 'nationality' ]
+        fields = "__all__"
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.name')
@@ -21,9 +21,9 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 class FormatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Format
-        fields = [ 'name' ]
+        fields = "__all__"
 
 class PublisherSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Publisher
-        fields = [ 'name' ]
+        fields = "__all__"
