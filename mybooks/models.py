@@ -30,6 +30,9 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
     was_read = models.CharField(max_length=3)
 
+    ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
+    to_buy = models.CharField(blank=False, choices = ToBuyTypes.choices, max_length=5, default='No')
+
     def __str__(self) -> str:
         return self.title
 
