@@ -21,6 +21,13 @@ class Format(models.Model):
     def __str__(self) -> str:
         return self.name
     
+
+class Literature(models.Model):
+    value = models.CharField(max_length=200, null=False)
+
+    def __str__(self) -> str:
+        return f'{self.value} LITERATURE'
+
 class Book(models.Model):
     title = models.CharField(max_length=300, null=False)
     published_at = models.CharField(max_length=4, null=True)
@@ -35,7 +42,6 @@ class Book(models.Model):
 
     def __str__(self) -> str:
         return self.title
-
 
 class Classification(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
