@@ -32,3 +32,12 @@ class Book(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+
+class Classification(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    ClassificationTypes = models.TextChoices('ClassificationTypes', 'GREAT GOOD MODERATE BAD HORRIBLE')
+    value = models.CharField(blank=False, choices=ClassificationTypes.choices, max_length=10)
+
+    def __str__(self) -> str:
+        return self.book.title

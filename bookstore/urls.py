@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from mybooks.views import AuthorViewSet, BookViewSet, FormatViewSet, PublisherViewSet
+from mybooks.views import AuthorViewSet, BookViewSet, ClassificationViewSet, FormatViewSet, PublisherViewSet
 
 router = routers.DefaultRouter()
 
 router.register(r'authors', AuthorViewSet)
 router.register(r'books', BookViewSet)
+router.register(r'classsifications', ClassificationViewSet)
 router.register(r'formats', FormatViewSet)
 router.register(r'publishers', PublisherViewSet)
 
