@@ -1,8 +1,8 @@
-from .models import Author, Book, Classification, Format, Publisher
+from .models import Author, Book, Classification, Format, Literature, Publisher
 
 from rest_framework import viewsets
 
-from .serializers import AuthorSerializer, BookSerializer, ClassificationSerializer, FormatSerializer, PublisherSerializer
+from .serializers import AuthorSerializer, BookSerializer, ClassificationSerializer, FormatSerializer, LiteratureSerializer, PublisherSerializer
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
@@ -21,6 +21,10 @@ class FormatViewSet(viewsets.ModelViewSet):
     queryset = Format.objects.all()
     serializer_class = FormatSerializer
 
+class LiteratureViewSet(viewsets.ModelViewSet):
+    queryset = Literature.objects.all()
+    serializer_class = LiteratureSerializer
+    
 class PublisherViewSet(viewsets.ModelViewSet):
     queryset = Publisher.objects.all()
     serializer_class = PublisherSerializer
