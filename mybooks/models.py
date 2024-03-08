@@ -54,7 +54,7 @@ class BookLiterature(models.Model):
 
     def __str__(self) -> str:
         return f"{self.literature.value} LITERATURE" 
-    
+
 class Classification(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     ClassificationTypes = models.TextChoices('ClassificationTypes', 'GREAT GOOD MODERATE BAD HORRIBLE')
@@ -75,3 +75,10 @@ class Genre(models.Model):
 
     def __str__(self) -> str:
         return self.genre
+
+class BookGenre(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_genres', null=False)
+    genre = models.ForeignKey(Genre, on_delete=models.CASCADE, null=False)
+
+    def __str__(self) -> str:
+        return self.genre.genre
