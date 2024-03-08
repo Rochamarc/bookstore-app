@@ -20,9 +20,8 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Book
-        fields = "__all__" 
-        # [ 'title', 'published_at', 'isbn', 'author', 'format', 'publisher', 'was_read', 'author_name' ]
-
+        fields = "__all__"
+        
 class BookLiteratureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BookLiterature
