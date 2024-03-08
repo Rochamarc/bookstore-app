@@ -16,6 +16,7 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
     format_name = serializers.ReadOnlyField(source='format.name')
 
     book_literatures = serializers.StringRelatedField(many=True)
+    book_genres = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Book
