@@ -32,7 +32,7 @@ class Book(models.Model):
     title = models.CharField(max_length=300, null=False)
     published_at = models.CharField(max_length=4, null=True)
     isbn = models.CharField(max_length=20, null=True)
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(Author, related_name='books', on_delete=models.CASCADE)
     format = models.ForeignKey(Format, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
     was_read = models.CharField(max_length=3)
