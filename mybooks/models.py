@@ -40,9 +40,21 @@ class Book(models.Model):
     ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
     to_buy = models.CharField(blank=False, choices = ToBuyTypes.choices, max_length=5, default='No')
 
+    # literature = models.ForeignKey(BookLiterature, on_delete=models.CASCADE)
+
     def __str__(self) -> str:
         return self.title
 
+class BookLiterature(models.Model):
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_literatures', null=False)
+    literature = models.ForeignKey(Literature, on_delete=models.CASCADE, null=False)
+    
+    class Meta:
+        unique_together = ['book', 'literature']
+
+    def __str__(self) -> str:
+        return f"{self.literature.value} LITERATURE" 
+    
 class Classification(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)
     ClassificationTypes = models.TextChoices('ClassificationTypes', 'GREAT GOOD MODERATE BAD HORRIBLE')
