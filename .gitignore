@@ -1,6 +1,3 @@
 *__pycache__/
 
-database_dump.sql
-*.csv
-
 /staticfiles/
