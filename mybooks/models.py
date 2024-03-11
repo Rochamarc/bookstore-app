@@ -33,6 +33,7 @@ class Book(models.Model):
     format = models.ForeignKey(Format, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
     was_read = models.CharField(max_length=3)
+    times_read = models.IntegerField(null=False, default=1, blank=False)
 
     ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
     to_buy = models.CharField(blank=False, choices = ToBuyTypes.choices, max_length=5, default='No')
