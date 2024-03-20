@@ -28,13 +28,9 @@ class Literature(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=300, null=False)
     published_at = models.CharField(max_length=4, null=True)
-    isbn = models.CharField(max_length=20, null=True)
     author = models.ForeignKey(Author, related_name='books', on_delete=models.CASCADE)
-    format = models.ForeignKey(Format, on_delete=models.CASCADE)
-    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
     was_read = models.CharField(max_length=3)
     times_read = models.IntegerField(null=False, default=1, blank=False)
-    pages = models.IntegerField(null=False, default=1)
 
     ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
     to_buy = models.CharField(blank=False, choices = ToBuyTypes.choices, max_length=5, default='No')
@@ -43,12 +39,13 @@ class Book(models.Model):
         return self.title
 
 class Edition(models.Model):
-    title = models.CharField(max_length=300, null=False)
     isbn = models.CharField(max_length=20, null=True)
     format = models.ForeignKey(Format, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
     pages = models.IntegerField(null=False, default=1)
     
+    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+
     def __str__(self) -> str:
         return f'{self.title} :: {self.publisher} :: {self.format}' 
 
