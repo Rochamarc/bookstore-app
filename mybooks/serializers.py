@@ -12,8 +12,6 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
 class BookSerializer(serializers.HyperlinkedModelSerializer):
     author_name = serializers.ReadOnlyField(source='author.name')
     author_nationality = serializers.ReadOnlyField(source='author.nationality')
-    publisher_name = serializers.ReadOnlyField(source='publisher.name')
-    format_name = serializers.ReadOnlyField(source='format.name')
 
     book_literatures = serializers.StringRelatedField(many=True)
     book_genres = serializers.StringRelatedField(many=True)
@@ -40,6 +38,10 @@ class ClassificationSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 class EditionSerializer(serializers.HyperlinkedModelSerializer):
+    book = serializers.ReadOnlyField(source='book.title')
+    format = serializers.ReadOnlyField(source='format.name')
+    publisher = serializers.ReadOnlyField(source='publisher.name')
+
     class Meta:
         model = Edition
         fields = "__all__"
