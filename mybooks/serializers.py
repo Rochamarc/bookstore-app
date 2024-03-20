@@ -10,7 +10,7 @@ class AuthorSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):
-    author_name = serializers.ReadOnlyField(source='author.name')
+    author = serializers.ReadOnlyField(source='author.name')
     author_nationality = serializers.ReadOnlyField(source='author.nationality')
 
     book_literatures = serializers.StringRelatedField(many=True)
