@@ -47,6 +47,7 @@ class Edition(models.Model):
     isbn = models.CharField(max_length=20, null=True)
     format = models.ForeignKey(Format, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
+    pages = models.IntegerField(null=False, default=1)
     
     def __str__(self) -> str:
         return f'{self.title} :: {self.publisher} :: {self.format}' 
