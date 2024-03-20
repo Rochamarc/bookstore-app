@@ -14,5 +14,25 @@ class Migration(migrations.Migration):
             model_name='book',
             name='times_read',
             field=models.IntegerField(default=1),
+        ),        
+        migrations.AddField(
+            model_name='book',
+            name='pages',
+            field=models.IntegerField(default=1),
+        ),
+        migrations.AlterField(
+            model_name='author',
+            name='name',
+            field=models.CharField(max_length=200, unique=True),
+        ),
+        migrations.AlterField(
+            model_name='format',
+            name='name',
+            field=models.CharField(max_length=100, unique=True),
+        ),
+        migrations.AlterField(
+            model_name='publisher',
+            name='name',
+            field=models.CharField(max_length=200, unique=True),
         ),
     ]
