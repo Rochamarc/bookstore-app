@@ -1,20 +1,20 @@
 from django.db import models
 
 class Author(models.Model):
-    name = models.CharField(max_length=200, null=False)
+    name = models.CharField(max_length=200, null=False, unique=True)
     nationality = models.CharField(max_length=200, null=False)
     
     def __str__(self) -> str:
         return self.name
 
 class Publisher(models.Model):
-    name = models.CharField(max_length=200, null=False)
+    name = models.CharField(max_length=200, null=False, unique=True)
 
     def __str__(self) -> str:
         return self.name
 
 class Format(models.Model):
-    name = models.CharField(max_length=100, null=False)
+    name = models.CharField(max_length=100, null=False, unique=True)
     
     def __str__(self) -> str:
         return self.name   
@@ -34,6 +34,7 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
     was_read = models.CharField(max_length=3)
     times_read = models.IntegerField(null=False, default=1, blank=False)
+    pages = models.IntegerField(null=False, default=1)
 
     ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
     to_buy = models.CharField(blank=False, choices = ToBuyTypes.choices, max_length=5, default='No')
