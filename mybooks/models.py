@@ -41,6 +41,15 @@ class Book(models.Model):
     def __str__(self) -> str:
         return self.title
 
+class Edition(models.Model):
+    title = models.CharField(max_length=300, null=False)
+    isbn = models.CharField(max_length=20, null=True)
+    format = models.ForeignKey(Format, on_delete=models.CASCADE)
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
+    
+    def __str__(self) -> str:
+        return f'{self.title} :: {self.publisher} :: {self.format}' 
+
 class BookLiterature(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_literatures', null=False)
     literature = models.ForeignKey(Literature, on_delete=models.CASCADE, null=False)
