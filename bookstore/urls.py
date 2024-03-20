@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLiteratureViewSet, ClassificationViewSet, FormatViewSet, LiteratureViewSet, PublisherViewSet, GenreViewSet
+from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLiteratureViewSet, ClassificationViewSet, FormatViewSet, LiteratureViewSet, PublisherViewSet, GenreViewSet, EditionViewSet
 
 router = routers.DefaultRouter()
 
@@ -30,6 +30,7 @@ router.register(r'publishers', PublisherViewSet)
 router.register(r'genres', GenreViewSet)
 router.register(r'book-literatures', BookLiteratureViewSet)
 router.register(r'book-genres', BookGenreViewSet)
+router.register(r'editions', EditionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
