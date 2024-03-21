@@ -44,10 +44,10 @@ class Edition(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE, null=True)
     pages = models.IntegerField(null=False, default=1)
     
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, related_name='book_editions' ,on_delete=models.CASCADE)
 
     def __str__(self) -> str:
-        return f'{self.title} :: {self.publisher} :: {self.format}' 
+        return f'{self.publisher} :: {self.format}' 
 
 class BookLiterature(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='book_literatures', null=False)
