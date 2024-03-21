@@ -15,6 +15,7 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 
     book_literatures = serializers.StringRelatedField(many=True)
     book_genres = serializers.StringRelatedField(many=True)
+    book_editions = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = Book
