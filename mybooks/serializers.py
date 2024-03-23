@@ -2,25 +2,21 @@ from rest_framework import serializers
 
 from .models import Author, Book, BookGenre, Classification, Format, Literature, BookLiterature, Publisher, Genre, Edition
 
-class AuthorSerializer(serializers.HyperlinkedModelSerializer):
-    books = serializers.StringRelatedField(many=True)
+class BooksToAuthorSerializer(serializers.HyperlinkedModelSerializer):
+    book_genres = serializers.StringRelatedField(many=True)
 
+    class Meta:
+        model = Book
+        fields = [ 'title', 'book_genres']
+
+class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+    # books = serializers.StringRelatedField(many=True)
+    
+    books = BooksToAuthorSerializer(many=True)
     class Meta:
         model = Author
         fields = "__all__"
 
-class BookSerializer(serializers.HyperlinkedModelSerializer):
-    author = serializers.ReadOnlyField(source='author.name')
-    author_nationality = serializers.ReadOnlyField(source='author.nationality')
-
-    book_literatures = serializers.StringRelatedField(many=True)
-    book_genres = serializers.StringRelatedField(many=True)
-    book_editions = serializers.StringRelatedField(many=True)
-
-    class Meta:
-        model = Book
-        fields = "__all__"
-        
 class BookLiteratureSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = BookLiterature
@@ -66,3 +62,17 @@ class GenreSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Genre
         fields = "__all__"
+
+class BookSerializer(serializers.HyperlinkedModelSerializer):
+    author = serializers.ReadOnlyField(source='author.name')
+    author_nationality = serializers.ReadOnlyField(source='author.nationality')
+
+    book_literatures = serializers.StringRelatedField(many=True)
+    book_genres = serializers.StringRelatedField(many=True)
+
+    book_editions = EditionSerializer(many=True)
+
+    class Meta:
+        model = Book
+        fields = "__all__"
+        
