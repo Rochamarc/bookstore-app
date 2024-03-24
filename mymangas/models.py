@@ -28,3 +28,7 @@ class Manga(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+class AuthorManga(models.Model):
+    author = models.ForeignKey(Author, related_name='author', null=False, on_delete=models.CASCADE)
+    manga = models.ForeignKey(Manga, related_name='manga', null=False, on_delete=models.CASCADE)
