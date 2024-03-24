@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mybooks.apps.MybooksConfig',
+    'mymangas.apps.MymangasConfig',
     'rest_framework'
 ]
 
