@@ -21,16 +21,17 @@ from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLite
 
 router = routers.DefaultRouter()
 
-router.register(r'authors', AuthorViewSet)
-router.register(r'books', BookViewSet)
-router.register(r'classsifications', ClassificationViewSet)
-router.register(r'formats', FormatViewSet)
-router.register(r'literatures', LiteratureViewSet)
-router.register(r'publishers', PublisherViewSet)
-router.register(r'genres', GenreViewSet)
-router.register(r'book-literatures', BookLiteratureViewSet)
-router.register(r'book-genres', BookGenreViewSet)
-router.register(r'editions', EditionViewSet)
+# My books routes
+router.register(r'mybooks/authors', AuthorViewSet)
+router.register(r'mybooks/books', BookViewSet)
+router.register(r'mybooks/classsifications', ClassificationViewSet)
+router.register(r'mybooks/formats', FormatViewSet)
+router.register(r'mybooks/literatures', LiteratureViewSet)
+router.register(r'mybooks/publishers', PublisherViewSet)
+router.register(r'mybooks/genres', GenreViewSet)
+router.register(r'mybooks/book-literatures', BookLiteratureViewSet)
+router.register(r'mybooks/book-genres', BookGenreViewSet)
+router.register(r'mybooks/editions', EditionViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
