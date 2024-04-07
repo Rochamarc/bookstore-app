@@ -17,7 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 from rest_framework import routers
-from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLiteratureViewSet, ClassificationViewSet, FormatViewSet, LiteratureViewSet, PublisherViewSet, GenreViewSet, EditionViewSet
+from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLiteratureViewSet, ClassificationViewSet, FormatViewSet
+from mybooks.views import LiteratureViewSet, PublisherViewSet, GenreViewSet, EditionViewSet, ToReadViewSet
 
 from mymangas.views import AuthorViewSet as MangaAuthorViewSet
 from mymangas.views import MangaViewSet, AuthorMangaViewSet
@@ -37,6 +38,7 @@ router.register(r'mybooks/genres', GenreViewSet)
 router.register(r'mybooks/book-literatures', BookLiteratureViewSet)
 router.register(r'mybooks/book-genres', BookGenreViewSet)
 router.register(r'mybooks/editions', EditionViewSet)
+router.register(r'mybooks/to_read', ToReadViewSet)
 
 # My manga routes
 router.register(r'mymangas/authors', MangaAuthorViewSet)

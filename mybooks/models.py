@@ -79,3 +79,10 @@ class BookGenre(models.Model):
 
     def __str__(self) -> str:
         return self.genre.genre
+    
+class ToRead(models.Model):
+    year = models.CharField(max_length=4, null=False)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='books', null=False)
+
+    def __str__(self) -> str:
+        return f"To Read {self.book} in {self.year}"

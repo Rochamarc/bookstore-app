@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Author, Book, BookGenre, Classification, Format, Literature, BookLiterature, Publisher, Genre, Edition
+from .models import Author, Book, BookGenre, Classification, Format, Literature, BookLiterature, Publisher, Genre, Edition, ToRead
 
 
 class BooksToAuthorSerializer(serializers.HyperlinkedModelSerializer):
@@ -59,8 +59,6 @@ class ClassificationSerializer(serializers.HyperlinkedModelSerializer):
         model = Classification
         fields = "__all__"
 
-
-
 class FormatSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Format
@@ -79,4 +77,9 @@ class PublisherSerializer(serializers.HyperlinkedModelSerializer):
 class GenreSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Genre
+        fields = "__all__"
+
+class ToReadSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ToRead
         fields = "__all__"
