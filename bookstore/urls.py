@@ -20,7 +20,7 @@ from rest_framework import routers
 from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLiteratureViewSet, ClassificationViewSet, FormatViewSet
 from mybooks.views import LiteratureViewSet, PublisherViewSet, GenreViewSet, EditionViewSet, ToReadViewSet
 
-from mymangas.views import AuthorViewSet as MangaAuthorViewSet
+from mymangas.views import AuthorViewSet as AuthorViewSetManga
 from mymangas.views import MangaViewSet, AuthorMangaViewSet
 from mymangas.views import PublisherViewSet as MangaPublisherViewSet
 
@@ -41,7 +41,7 @@ router.register(r'mybooks/editions', EditionViewSet)
 router.register(r'mybooks/to_read', ToReadViewSet)
 
 # My manga routes
-router.register(r'mymangas/authors', MangaAuthorViewSet)
+router.register(r'mymangas/authors', AuthorMangaViewSet)
 router.register(r'mymangas/mangas', MangaViewSet)
 router.register(r'mymangas/publishers', MangaPublisherViewSet)
 router.register(r'mymangas/author-manga', AuthorMangaViewSet)
