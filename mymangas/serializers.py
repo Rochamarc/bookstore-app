@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
-from .models import Author, Manga, Publisher, AuthorManga
+from .models import MangaAuthor, Manga, Publisher, AuthorManga
 
 class AuthorMangaSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = AuthorManga
         fields = "__all__"
 
-class AuthorSerializer(serializers.HyperlinkedModelSerializer):
+class MangaAuthorSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Author
+        model = MangaAuthor
         fields = "__all__"
 
 class MangaSerializer(serializers.HyperlinkedModelSerializer):

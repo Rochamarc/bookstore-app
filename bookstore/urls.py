@@ -22,7 +22,7 @@ from mybooks.views import LiteratureViewSet, PublisherViewSet, GenreViewSet, Edi
 
 from mymangas.views import MangaViewSet, AuthorMangaViewSet
 from mymangas.views import PublisherViewSet as MangaPublisherViewSet
-
+from mymangas.views import MangaAuthorViewSet
 
 router = routers.DefaultRouter()
 
@@ -40,10 +40,10 @@ router.register(r'books/editions', EditionViewSet)
 router.register(r'books/to_read', ToReadViewSet)
 
 # Mangas
-# router.register(r'manga/authors', AuthorMangaViewSet)
+router.register(r'manga/manga-authors', MangaAuthorViewSet)
 router.register(r'manga/mangas', MangaViewSet)
 router.register(r'manga/publishers', MangaPublisherViewSet)
-router.register(r'manga/manga-authors', AuthorMangaViewSet)
+router.register(r'manga/manga-author', AuthorMangaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
