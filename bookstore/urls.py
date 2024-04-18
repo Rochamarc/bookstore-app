@@ -40,10 +40,10 @@ router.register(r'books/editions', EditionViewSet)
 router.register(r'books/to_read', ToReadViewSet)
 
 # Mangas
-router.register(r'manga/manga-authors', MangaAuthorViewSet)
+router.register(r'manga/authors', MangaAuthorViewSet) # Authors router
 router.register(r'manga/mangas', MangaViewSet)
 router.register(r'manga/publishers', MangaPublisherViewSet)
-router.register(r'manga/manga-author', AuthorMangaViewSet)
+router.register(r'manga/manga-authors', AuthorMangaViewSet) # route from manga x author relationships
 
 urlpatterns = [
     path('', include(router.urls)),
