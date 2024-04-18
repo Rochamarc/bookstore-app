@@ -11,9 +11,8 @@ class BooksToAuthorSerializer(serializers.HyperlinkedModelSerializer):
         fields = [ 'title', 'book_genres']
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
-    # books = serializers.StringRelatedField(many=True)
-    
     books = BooksToAuthorSerializer(many=True, read_only=True)
+
     class Meta:
         model = Author
         fields = "__all__"
@@ -28,8 +27,6 @@ class EditionSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 class BookSerializer(serializers.HyperlinkedModelSerializer):
-    # author = serializers.ReadOnlyField(source='author.name')
-
     author_name = serializers.ReadOnlyField(source='author.name')
     author_nationality = serializers.ReadOnlyField(source='author.nationality')
 
@@ -45,13 +42,15 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 class BookLiteratureSerializer(serializers.HyperlinkedModelSerializer):
     book_name = serializers.ReadOnlyField(source='book.title')
     literature_name = serializers.ReadOnlyField(source='literature.value')
-
     
     class Meta:
         model = BookLiterature
         fields = "__all__"
 
 class BookGenreSerializer(serializers.HyperlinkedModelSerializer):
+    book_name = serializers.ReadOnlyField(source='book.title')
+    genre_name = serializers.ReadOnlyField(source='genre.genre')
+
     class Meta:
         model = BookGenre 
         fields = "__all__"
@@ -84,6 +83,8 @@ class GenreSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 class ToReadSerializer(serializers.HyperlinkedModelSerializer):
+    book_name = serializers.ReadOnlyField(source='book.title')
+    
     class Meta:
         model = ToRead
         fields = "__all__"
