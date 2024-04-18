@@ -43,6 +43,10 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
         fields = "__all__"
 
 class BookLiteratureSerializer(serializers.HyperlinkedModelSerializer):
+    book_name = serializers.ReadOnlyField(source='book.title')
+    literature_name = serializers.ReadOnlyField(source='literature.value')
+
+    
     class Meta:
         model = BookLiterature
         fields = "__all__"
