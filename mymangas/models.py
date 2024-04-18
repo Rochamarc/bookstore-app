@@ -1,6 +1,6 @@
 from django.db import models
 
-class Author(models.Model):
+class MangaAuthor(models.Model):
     name = models.CharField(max_length=200, null=False, unique=True)
     nationality = models.CharField(max_length=200, null=False)
 
@@ -45,7 +45,7 @@ class Manga(models.Model):
         super(Manga, self).save(*args, **kwargs)
 
 class AuthorManga(models.Model):
-    author = models.ForeignKey(Author, related_name='author', null=False, on_delete=models.CASCADE)
+    author = models.ForeignKey(MangaAuthor, related_name='author', null=False, on_delete=models.CASCADE)
     manga = models.ForeignKey(Manga, related_name='manga', null=False, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now=True)
