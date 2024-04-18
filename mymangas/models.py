@@ -3,12 +3,18 @@ from django.db import models
 class Author(models.Model):
     name = models.CharField(max_length=200, null=False, unique=True)
     nationality = models.CharField(max_length=200, null=False)
-    
+
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self) -> str:
         return self.name
 
 class Publisher(models.Model):
     name = models.CharField(max_length=200, null=False, unique=True)
+
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self) -> str:
         return self.name
@@ -25,6 +31,9 @@ class Manga(models.Model):
     ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
     to_buy = models.CharField(blank=False, choices = ToBuyTypes.choices, max_length=5, default='No')
 
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __str__(self) -> str:
         return self.title
 
@@ -37,3 +46,6 @@ class Manga(models.Model):
 class AuthorManga(models.Model):
     author = models.ForeignKey(Author, related_name='author', null=False, on_delete=models.CASCADE)
     manga = models.ForeignKey(Manga, related_name='manga', null=False, on_delete=models.CASCADE)
+
+    created_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
