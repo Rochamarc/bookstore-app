@@ -45,8 +45,11 @@ class Manga(models.Model):
         super(Manga, self).save(*args, **kwargs)
 
 class AuthorManga(models.Model):
-    author = models.ForeignKey(MangaAuthor, related_name='author', null=False, on_delete=models.CASCADE)
-    manga = models.ForeignKey(Manga, related_name='manga', null=False, on_delete=models.CASCADE)
+    author = models.ForeignKey(MangaAuthor, related_name='manga', null=False, on_delete=models.CASCADE)
+    manga = models.ForeignKey(Manga, related_name='author', null=False, on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.author.name
