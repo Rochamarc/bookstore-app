@@ -19,8 +19,7 @@ class Manga(models.Model):
     
     published_at = models.CharField(max_length=4, null=True)
     
-    # author = models.ForeignKey(Author, related_name='books', on_delete=models.CASCADE)
-    was_read = models.CharField(max_length=3)
+    volumes_read = models.IntegerField(null=True)
     times_read = models.IntegerField(null=False, default=1, blank=False)
 
     ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
@@ -28,6 +27,12 @@ class Manga(models.Model):
 
     def __str__(self) -> str:
         return self.title
+
+    def save(self, *args, **kwargs):
+        # Creates a default value for volumes_read as the number of volumes
+        if not self.volumes_read:
+            self.volumes_read = self.volumes
+        super(Manga, self).save(*args, **kwargs)
 
 class AuthorManga(models.Model):
     author = models.ForeignKey(Author, related_name='author', null=False, on_delete=models.CASCADE)
