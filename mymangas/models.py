@@ -23,6 +23,7 @@ class Manga(models.Model):
     title = models.CharField(max_length=300, null=False)
     volumes = models.IntegerField(default=1, null=False)
     
+    publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     published_at = models.CharField(max_length=4, null=True)
     
     volumes_read = models.IntegerField(null=True)
