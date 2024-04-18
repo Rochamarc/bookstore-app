@@ -20,31 +20,30 @@ from rest_framework import routers
 from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLiteratureViewSet, ClassificationViewSet, FormatViewSet
 from mybooks.views import LiteratureViewSet, PublisherViewSet, GenreViewSet, EditionViewSet, ToReadViewSet
 
-from mymangas.views import AuthorViewSet as AuthorViewSetManga
 from mymangas.views import MangaViewSet, AuthorMangaViewSet
 from mymangas.views import PublisherViewSet as MangaPublisherViewSet
 
 
 router = routers.DefaultRouter()
 
-# My books routes
-router.register(r'mybooks/authors', AuthorViewSet)
-router.register(r'mybooks/books', BookViewSet)
-router.register(r'mybooks/classsifications', ClassificationViewSet)
-router.register(r'mybooks/formats', FormatViewSet)
-router.register(r'mybooks/literatures', LiteratureViewSet)
-router.register(r'mybooks/publishers', PublisherViewSet)
-router.register(r'mybooks/genres', GenreViewSet)
-router.register(r'mybooks/book-literatures', BookLiteratureViewSet)
-router.register(r'mybooks/book-genres', BookGenreViewSet)
-router.register(r'mybooks/editions', EditionViewSet)
-router.register(r'mybooks/to_read', ToReadViewSet)
+# Books
+router.register(r'books/authors', AuthorViewSet)
+router.register(r'books/books', BookViewSet)
+router.register(r'books/classsifications', ClassificationViewSet)
+router.register(r'books/formats', FormatViewSet)
+router.register(r'books/literatures', LiteratureViewSet)
+router.register(r'books/publishers', PublisherViewSet)
+router.register(r'books/genres', GenreViewSet)
+router.register(r'books/book-literatures', BookLiteratureViewSet)
+router.register(r'books/book-genres', BookGenreViewSet)
+router.register(r'books/editions', EditionViewSet)
+router.register(r'books/to_read', ToReadViewSet)
 
-# My manga routes
-router.register(r'mymangas/authors', AuthorMangaViewSet)
-router.register(r'mymangas/mangas', MangaViewSet)
-router.register(r'mymangas/publishers', MangaPublisherViewSet)
-router.register(r'mymangas/author-manga', AuthorMangaViewSet)
+# Mangas
+router.register(r'manga/authors', AuthorMangaViewSet)
+router.register(r'manga/mangas', MangaViewSet)
+router.register(r'manga/publishers', MangaPublisherViewSet)
+router.register(r'manga/author-manga', AuthorMangaViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
