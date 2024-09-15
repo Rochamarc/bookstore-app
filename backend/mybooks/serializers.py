@@ -8,7 +8,7 @@ class BooksToAuthorSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Book
-        fields = [ 'title', 'book_genres']
+        fields = [ 'title', 'book_genres', 'url']
 
 class AuthorSerializer(serializers.HyperlinkedModelSerializer):
     books = BooksToAuthorSerializer(many=True, read_only=True)
