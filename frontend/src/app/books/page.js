@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-export default async function Home() {
+export default async function BooksPage() {
   let books = [];
   try {
     const res = await fetch('http://localhost:8000/books/books/?format=json', {
@@ -8,17 +8,17 @@ export default async function Home() {
     });
 
     if (!res.ok) {
-      throw new Error(`Erro ao buscar os livros: ${res.status}`);
+      throw new Error(`Error Searching Books: ${res.status}`);
     }
 
     books = await res.json();
   } catch (error) {
-    console.error("Erro ao fazer o fetch da API:", error);
+    console.error("Error fetching API:", error);
   }
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>Lista de Livros</h1>
+      <h1>Books List</h1>
       {books.length > 0 ? (
         <div style={{
           display: 'flex',
@@ -37,13 +37,9 @@ export default async function Home() {
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
             }}>
               <h2>{book.title}</h2>
-              <p><strong>Autor:</strong> {book.author_name}</p>
+              <p><strong>Author:</strong> {book.author_name}</p>
               <Link href={`/books/${book.url.split('/').slice(-2, -1)}`}>
-                Ver Detalhes do Livro
-              </Link>
-              <br />
-              <Link href={`/authors/${book.author.split('/').slice(-2, -1)}`}>
-                Ver Detalhes do Autor
+                Book Deatils
               </Link>
             </div>
           ))}
