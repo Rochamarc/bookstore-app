@@ -1,37 +1,41 @@
-import BookCard from '../components/BookCard';
+import AuthorCard from '../components/AuthorCard';
+import Link from 'next/link';
 
-export default async function BooksPage() {
-  let books = [];
+export default async function AuthorsPage() {
+  let authors = [];
   try {
-    const res = await fetch('http://localhost:8000/books/books/?format=json', {
+    const res = await fetch('http://localhost:8000/books/authors/?format=json', {
       cache: 'no-store',
     });
 
     if (!res.ok) {
-      throw new Error(`Failed to fetch books: ${res.status}`);
+      throw new Error(`Failed to fetch authors: ${res.status}`);
     }
 
-    books = await res.json();
+    authors = await res.json();
   } catch (error) {
-    console.error("Error fetching books from API:", error);
+    console.error("Error fetching authors:", error);
   }
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>Book List</h1>
-      {books.length > 0 ? (
+      <h1>Author List</h1>
+      <Link href="../admin/add-authors" style={{ margin: '20px', display: 'block' }}>
+        Add a New Author
+      </Link>
+      {authors.length > 0 ? (
         <div style={{
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
           padding: '20px'
         }}>
-          {books.map((book) => (
-            <BookCard key={book.url} book={book} />
+          {authors.map((author) => (
+            <AuthorCard key={author.url} author={author} />
           ))}
         </div>
       ) : (
-        <p>No books found or error loading data.</p>
+        <p>No authors found or error loading data.</p>
       )}
     </div>
   );
