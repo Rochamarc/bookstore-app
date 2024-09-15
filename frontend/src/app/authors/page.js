@@ -1,51 +1,37 @@
-import Link from 'next/link';
+import BookCard from '../components/BookCard';
 
-export default async function AuthorsPage() {
-  let authors = [];
+export default async function BooksPage() {
+  let books = [];
   try {
-    const res = await fetch('http://localhost:8000/books/authors/?format=json', {
+    const res = await fetch('http://localhost:8000/books/books/?format=json', {
       cache: 'no-store',
     });
 
     if (!res.ok) {
-      throw new Error(`Erro ao buscar os autores: ${res.status}`);
+      throw new Error(`Failed to fetch books: ${res.status}`);
     }
 
-    authors = await res.json();
+    books = await res.json();
   } catch (error) {
-    console.error("Erro ao fazer o fetch da API:", error);
+    console.error("Error fetching books from API:", error);
   }
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>Lista de Autores</h1>
-      {authors.length > 0 ? (
+      <h1>Book List</h1>
+      {books.length > 0 ? (
         <div style={{
           display: 'flex',
           flexWrap: 'wrap',
           justifyContent: 'center',
           padding: '20px'
         }}>
-          {authors.map((author) => (
-            <div key={author.url} style={{
-              backgroundColor: 'white',
-              border: '1px solid #ddd',
-              margin: '10px',
-              padding: '20px',
-              width: '300px',
-              borderRadius: '8px',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
-            }}>
-              <h2>{author.name}</h2>
-              <p><strong>Nacionalidade:</strong> {author.nationality}</p>
-              <Link href={`/authors/${author.url.split('/').slice(-2, -1)}`}>
-                Ver Detalhes do Autor
-              </Link>
-            </div>
+          {books.map((book) => (
+            <BookCard key={book.url} book={book} />
           ))}
         </div>
       ) : (
-        <p>Nenhum autor encontrado ou erro ao carregar os dados.</p>
+        <p>No books found or error loading data.</p>
       )}
     </div>
   );
