@@ -20,9 +20,6 @@ from rest_framework import routers
 from mybooks.views import AuthorViewSet, BookViewSet, BookGenreViewSet, BookLiteratureViewSet, ClassificationViewSet, FormatViewSet
 from mybooks.views import LiteratureViewSet, PublisherViewSet, GenreViewSet, EditionViewSet, ToReadViewSet
 
-from mymangas.views import MangaViewSet, AuthorMangaViewSet
-from mymangas.views import PublisherViewSet as MangaPublisherViewSet
-from mymangas.views import MangaAuthorViewSet
 
 router = routers.DefaultRouter()
 
@@ -38,12 +35,6 @@ router.register(r'books/book-literatures', BookLiteratureViewSet)
 router.register(r'books/book-genres', BookGenreViewSet)
 router.register(r'books/editions', EditionViewSet)
 router.register(r'books/to_read', ToReadViewSet)
-
-# Mangas
-router.register(r'manga/authors', MangaAuthorViewSet) # Authors router
-router.register(r'manga/mangas', MangaViewSet)
-router.register(r'manga/publishers', MangaPublisherViewSet)
-router.register(r'manga/manga-authors', AuthorMangaViewSet) # route from manga x author relationships
 
 urlpatterns = [
     path('', include(router.urls)),
