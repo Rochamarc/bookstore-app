@@ -1,17 +1,21 @@
 services:
   backend:
-    build: .
+    container_name: bookstore-backend
+    build: 
+      context: .
+      dockerfile: app/django/Dockerfile
+    command: sh -c "python3 manage.py migrate --noinput && python3 manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:8000"
     ports:
       - 8000:8000
-    command: sh -c "python3 backend/manage.py migrate --noinput && python3 backend/manage.py collectstatic --noinput && python backend/manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/backend/bookstore
     depends_on:
       - db
     restart: "always"
+      
   db:
-    image: mysql:8
     container_name: bookstore-api-db
+    image: mysql:8
     environment:
       MYSQL_ROOT_PASSWORD: RootPassword
       MYSQL_USER: bookstore-user
@@ -23,7 +27,18 @@ services:
     volumes:
       - data:/var/lib/mysql
     restart: "always"
-    
+  
+  frontend:
+    container_name: bookstore-frontend
+    build:
+      context: .
+      dockerfile: app/nextjs/Dockerfile
+    command: sh -c "npm run dev"
+    ports:
+      - 3000:3000
+    links:
+      - backend
+    restart: "always"
 
 volumes:
   data:

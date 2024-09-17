@@ -2,11 +2,14 @@ FROM python:3.11-bookworm
 
 ENV PATH /usr/local/bin:$PATH
 
-WORKDIR /backend/bookstore
+RUN mkdir bookstore_backend
+
+WORKDIR /bookstore_backend
+
 COPY ./backend/requirements.txt .
 
 RUN python3 -m pip install -r requirements.txt 
 
-COPY . .
+COPY backend/ .
 
-RUN python backend/manage.py makemigrations
+RUN python manage.py makemigrations
