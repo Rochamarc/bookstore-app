@@ -1,5 +1,7 @@
 import Link from 'next/link';
 
+import NavBar from './components/NavBar';
+
 export default async function Home() {
   let books = [];
   try {
@@ -8,17 +10,18 @@ export default async function Home() {
     });
 
     if (!res.ok) {
-      throw new Error(`Erro ao buscar os livros: ${res.status}`);
+      throw new Error(`Error fetching books: ${res.status}`);
     }
 
     books = await res.json();
   } catch (error) {
-    console.error("Erro ao fazer o fetch da API:", error);
+    console.error("Error fetching API:", error);
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <h1>Lista de Livros</h1>
+    <div style={{ textAlign: 'center', fontFamily: 'Arial, sans-serif', padding: '20px' }}>
+      <NavBar />
+      <h2>Books List</h2>
       {books.length > 0 ? (
         <div style={{
           display: 'flex',
@@ -28,28 +31,31 @@ export default async function Home() {
         }}>
           {books.map((book) => (
             <div key={book.url} style={{
-              backgroundColor: 'white',
+              backgroundColor: '#f9f9f9',
               border: '1px solid #ddd',
               margin: '10px',
               padding: '20px',
               width: '300px',
               borderRadius: '8px',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+              transition: 'transform 0.3s ease',
             }}>
-              <h2>{book.title}</h2>
-              <p><strong>Autor:</strong> {book.author_name}</p>
-              <Link href={`/books/${book.url.split('/').slice(-2, -1)}`}>
-                Ver Detalhes do Livro
-              </Link>
-              <br />
-              <Link href={`/authors/${book.author.split('/').slice(-2, -1)}`}>
-                Ver Detalhes do Autor
-              </Link>
+              <h3 style={{ fontSize: '18px', margin: '0 0 10px' }}>{book.title}</h3>
+              <p><strong>Author:</strong> {book.author_name}</p>
+              <div>
+                <Link href={`/books/${book.url.split('/').slice(-2, -1)}`} style={{ color: '#0070f3', textDecoration: 'none', fontWeight: 'bold' }}>
+                  View Book Details
+                </Link>
+                <br />
+                <Link href={`/authors/${book.author.split('/').slice(-2, -1)}`} style={{ color: '#0070f3', textDecoration: 'none', fontWeight: 'bold' }}>
+                  View Author Details
+                </Link>
+              </div>
             </div>
           ))}
         </div>
       ) : (
-        <p>Nenhum livro encontrado ou erro ao carregar os dados.</p>
+        <p>No books found or error loading data.</p>
       )}
     </div>
   );
