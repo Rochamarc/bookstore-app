@@ -20,8 +20,10 @@ export default function AddAuthor() {
     try {
       const res = await fetch('http://localhost:8000/books/authors/', {
         method: 'POST',
+        dataType: 'Json',
         headers: {
           'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(authorData),
       });

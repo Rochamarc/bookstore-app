@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import NavBar from '../components/NavBar';
 
 export default async function BooksPage() {
   let books = [];
@@ -18,6 +19,7 @@ export default async function BooksPage() {
 
   return (
     <div style={{ textAlign: 'center' }}>
+      <NavBar />
       <h1>Books List</h1>
       {books.length > 0 ? (
         <div style={{

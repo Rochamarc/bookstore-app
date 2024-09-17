@@ -1,6 +1,8 @@
 import AuthorCard from '../components/AuthorCard';
 import Link from 'next/link';
 
+import NavBar from '../components/NavBar';
+
 export default async function AuthorsPage() {
   let authors = [];
   try {
@@ -19,6 +21,7 @@ export default async function AuthorsPage() {
 
   return (
     <div style={{ textAlign: 'center' }}>
+      <NavBar />
       <h1>Author List</h1>
       <Link href="../admin/add-authors" style={{ margin: '20px', display: 'block' }}>
         Add a New Author
