@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 async function getAuthorData(id) {
-    const res = await fetch(`http://localhost:8000/books/authors/${id}/?format=json`, {
+    const res = await fetch(`http://backend:8000/books/authors/${id}/?format=json`, {
       cache: 'no-store',
     });
     

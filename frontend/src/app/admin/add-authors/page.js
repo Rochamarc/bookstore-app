@@ -18,7 +18,7 @@ export default function AddAuthor() {
     };
 
     try {
-      const res = await fetch('http://localhost:8000/books/authors/', {
+      const res = await fetch('http://backend:8000/books/authors/', {
         method: 'POST',
         dataType: 'Json',
         headers: {

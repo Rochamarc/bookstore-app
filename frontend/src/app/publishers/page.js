@@ -1,7 +1,4 @@
 
-// src/app/publishers/page.js
-'use client';
-
 import NavBar from "../components/NavBar";
 
 
@@ -9,7 +6,7 @@ export default async function PublishersPage() {
   let publishers = [];
 
   try {
-    const res = await fetch('http://localhost:8000/books/publishers/?format=json', {
+    const res = await fetch('http://backend:8000/books/publishers/?format=json', {
       cache: 'no-store',
     });
 
@@ -44,7 +41,6 @@ export default async function PublishersPage() {
               boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
             }}>
               <h2>{publisher.name}</h2>
-              {/* Ocultando created_at e updated_at */}
             </div>
           ))}
         </div>

@@ -4,7 +4,7 @@ import NavBar from '../components/NavBar';
 export default async function BooksPage() {
   let books = [];
   try {
-    const res = await fetch('http://localhost:8000/books/books/?format=json', {
+    const res = await fetch('http://backend:8000/books/books/?format=json', {
       cache: 'no-store',
     });
 
