@@ -2,7 +2,7 @@
 async function getBookData(id) {
     // 
     
-    const res = await fetch(`http://localhost:8000/books/books/${id}/?format=json`, {
+    const res = await fetch(`http://backend:8000/books/books/${id}/?format=json`, {
       cache: 'no-store',
     });
     

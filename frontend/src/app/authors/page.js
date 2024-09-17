@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 export default async function AuthorsPage() {
   let authors = [];
   try {
-    const res = await fetch('http://localhost:8000/books/authors/?format=json', {
+    const res = await fetch('http://backend:8000/books/authors/?format=json', {
       cache: 'no-store',
     });
 

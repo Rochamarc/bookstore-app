@@ -1,13 +1,10 @@
-// src/app/genres/page.js
-'use client';
-
 import NavBar from "../components/NavBar";
 
 export default async function GenresPage() {
   let genres = [];
 
   try {
-    const res = await fetch('http://localhost:8000/books/genres/?format=json', {
+    const res = await fetch('http://backend:8000/books/genres/?format=json', {
       cache: 'no-store',
     });
 

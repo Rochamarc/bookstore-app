@@ -2,12 +2,22 @@ import Link from 'next/link';
 
 import NavBar from './components/NavBar';
 
+const API_URL = "http://backend:8000/books/books/?format=json";
+
 export default async function Home() {
   let books = [];
   try {
-    const res = await fetch('http://localhost:8000/books/books/?format=json', {
+    const res = await fetch(API_URL, {
       cache: 'no-store',
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
     });
+
+    console.log(res.headers);
+    console.log(res.status);
+    console.log(res.body);
 
     if (!res.ok) {
       throw new Error(`Error fetching books: ${res.status}`);
