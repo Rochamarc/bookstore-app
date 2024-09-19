@@ -41,16 +41,19 @@ class Literature(models.Model):
 
 class Book(models.Model):
     title = models.CharField(max_length=300, null=False)
-    published_at = models.CharField(max_length=4, null=True)
+    published_at = models.CharField(max_length=4, default='0000')
     author = models.ForeignKey(Author, related_name='books', on_delete=models.CASCADE)
-    was_read = models.CharField(max_length=3)
-    times_read = models.IntegerField(null=False, default=1, blank=False)
+    was_read = models.CharField(max_length=3, default='No')
+    times_read = models.IntegerField(null=False, default=1)
 
     ToBuyTypes = models.TextChoices('ToBuyTypes', 'Yes No Maybe')
     to_buy = models.CharField(blank=False, choices = ToBuyTypes.choices, max_length=5, default='No')
 
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = [['title', 'author']]
 
     def __str__(self) -> str:
         return self.title
@@ -77,8 +80,6 @@ class BookLiterature(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
-        # alter the models foreign key
-        # unique_together = [['book', 'literature']]
         constraints = [
             models.UniqueConstraint(
                 Lower('book'),
