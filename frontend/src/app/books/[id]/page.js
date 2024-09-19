@@ -16,8 +16,8 @@ export default async function BookDetail({ params }) {
   const book = await getBookData(id);
 
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>{book.title}</h1>
+    <div style={{ padding: '20px', textAlign: 'center', color: '#f9f9f9' }}>
+      <h1 style={{ fontSize: '36px', fontFamily: 'Georgia, serif', color: '#9e9e9e' }}>{book.title}</h1>
       <p><strong>Published At:</strong> {book.published_at}</p>
       <p><strong>Was Read?:</strong> {book.was_read}</p>
       <p><strong>Times Read:</strong> {book.times_read}</p>
@@ -26,14 +26,16 @@ export default async function BookDetail({ params }) {
       {/* Detalhes da Edição */}
       {book.book_editions.length > 0 && (
         <div style={{ marginTop: '20px' }}>
-          <h2>Edition Details</h2>
+          <h2 style={{ fontSize: '28px', fontFamily: 'Georgia, serif', color: '#9e9e9e' }}>Edition Details</h2>
           {book.book_editions.map((edition, index) => (
             <div key={index} style={{
-              border: '1px solid #ddd',
+              border: '1px solid #4f4f4f',
               padding: '10px',
               margin: '10px',
               borderRadius: '8px',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+              backgroundColor: '#282828',
+              color: '#f9f9f9',
             }}>
               <p><strong>Book Name:</strong> {edition.book_name}</p>
               <p><strong>Format Type:</strong> {edition.format_type}</p>
@@ -49,7 +51,7 @@ export default async function BookDetail({ params }) {
       <div style={{ marginTop: '20px' }}>
         <p>
           <strong>Author:</strong> 
-          <a href={`/authors/${book.author.split('/').slice(-2, -1)}`} style={{ textDecoration: 'underline', color: 'blue' }}>
+          <a href={`/authors/${book.author.split('/').slice(-2, -1)}`} style={{ textDecoration: 'none', color: '#9e9e9e' }}>
             {book.author_name}
           </a>
         </p>
@@ -58,10 +60,10 @@ export default async function BookDetail({ params }) {
       {/* Gêneros */}
       {book.book_genres.length > 0 && (
         <div style={{ marginTop: '20px' }}>
-          <h2>Genres</h2>
+          <h2 style={{ fontSize: '28px', fontFamily: 'Georgia, serif', color: '#9e9e9e' }}>Genres</h2>
           <ul>
             {book.book_genres.map((genre, index) => (
-              <li key={index}>{genre}</li>
+              <li key={index} style={{ listStyle: 'none', fontSize: '18px' }}>{genre}</li>
             ))}
           </ul>
         </div>

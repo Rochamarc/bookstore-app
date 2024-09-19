@@ -1,15 +1,33 @@
+/* Aplica a cor de fundo mais escura da paleta */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: #000000; /* color1 */
+  color: #9e9e9e; /* color5 */
+  font-family: 'Merriweather', serif; /* Escolha uma fonte que remete a livros */
   margin: 0;
   padding: 0;
-  text-align: center;
 }
 
-h1 {
-  margin: 20px 0;
+/* Remove a aparência clássica dos links */
+a {
+  text-decoration: none;
+  color: #9e9e9e; /* color5 */
 }
+
+a:hover {
+  color: #ffffff; /* cor mais clara ao passar o mouse */
+}
+
+/* Destaca os títulos */
+h1, h2, h3 {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* Adiciona uma cor para títulos de livros */
+h1 {
+  color: #777777; /* color4 */
+}
+
 
 .bookList {
   display: flex;
@@ -28,10 +46,5 @@ h1 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.bookCard h2 {
-  margin-top: 0;
-}
 
-.bookCard p {
-  margin: 5px 0;
-}
+/* Outros elementos podem ter padding ou margens conforme necessário */

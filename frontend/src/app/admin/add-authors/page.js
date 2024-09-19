@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import NavBar from '@/app/components/NavBar';
 
 export default function AddAuthor() {
   const [name, setName] = useState('');
@@ -42,6 +43,7 @@ export default function AddAuthor() {
 
   return (
     <div style={{ textAlign: 'center', padding: '20px' }}>
+      <NavBar />
       <h1>Add a New Author</h1>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       <form onSubmit={handleSubmit} style={{ display: 'inline-block', textAlign: 'left' }}>
