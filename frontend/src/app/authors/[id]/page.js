@@ -1,41 +1,27 @@
-import Link from 'next/link';
 
-async function getAuthorData(id) {
+export default async function AuthorDetail({ params }) {
+  const { id } = params;
+  let author = {};
+
+  try {
     const res = await fetch(`http://backend:8000/books/authors/${id}/?format=json`, {
       cache: 'no-store',
     });
-    
+
     if (!res.ok) {
-      throw new Error(`Erro ao buscar o autor: ${res.status}`);
+      throw new Error('Erro ao buscar dados do autor');
     }
-    
-    return res.json();
+
+    author = await res.json();
+  } catch (error) {
+    console.error("Erro ao fazer o fetch da API:", error);
   }
-  
-  export default async function AuthorDetail({ params }) {
-    const { id } = params;
-    const author = await getAuthorData(id);
-  
-    return (
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <h1>{author.name}</h1>
-        <p><strong>Nacionalidade:</strong> {author.nationality}</p>
-  
-        <h2>Livros</h2>
-        <ul>
-          {author.books.length > 0 ? (
-            author.books.map((book) => (
-              <li key={book.title}>
-                <Link href={`/books/${book.url.split('/').slice(-2, -1)}`}>
-                    {book.title}
-                </Link>
-              </li>
-            ))
-          ) : (
-            <p>Nenhum livro encontrado.</p>
-          )}
-        </ul>
-      </div>
-    );
-  }
-  
+
+  return (
+    <div style={{ padding: '20px', textAlign: 'center', color: '#f9f9f9' }}>
+      <h1 style={{ fontSize: '36px', fontFamily: 'Georgia, serif', color: '#9e9e9e' }}>{author.name}</h1>
+      <p><strong>Nacionalidade:</strong> {author.nationality}</p>
+      {/* Adicione outras informações que desejar */}
+    </div>
+  );
+}

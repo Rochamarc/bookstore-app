@@ -1,6 +1,4 @@
-import NavBar from "../components/NavBar";
-
-export default async function GenresPage() {
+export default async function Genres() {
   let genres = [];
 
   try {
@@ -9,42 +7,35 @@ export default async function GenresPage() {
     });
 
     if (!res.ok) {
-      throw new Error(`Error Fetching Genres: ${res.status}`);
+      throw new Error('Erro ao buscar dados');
     }
 
     genres = await res.json();
   } catch (error) {
-    console.error("Error fetching API:", error);
+    console.error("Erro ao fazer o fetch da API:", error);
   }
 
   return (
-    <div style={{ textAlign: 'center' }}>
-      <NavBar />
-      <h1>Genres List</h1>
+    <div style={{ padding: '20px', textAlign: 'center', color: '#f9f9f9' }}>
+      <h1 style={{ fontSize: '36px', fontFamily: 'Georgia, serif', color: '#9e9e9e' }}>Gêneros</h1>
       {genres.length > 0 ? (
-        <div style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          padding: '20px'
-        }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '20px' }}>
           {genres.map((genre) => (
             <div key={genre.url} style={{
-              backgroundColor: 'white',
-              border: '1px solid #ddd',
+              backgroundColor: '#282828',
+              border: '1px solid #4f4f4f',
               margin: '10px',
               padding: '20px',
               width: '300px',
               borderRadius: '8px',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+              color: '#f9f9f9',
             }}>
-              <h2>{genre.genre}</h2>
+              <h2 style={{ fontFamily: 'Georgia, serif', fontSize: '24px', color: '#9e9e9e' }}>{genre.genre}</h2>
             </div>
           ))}
         </div>
-      ) : (
-        <p>No genres found or error loading data.</p>
-      )}
+      ) : <p>Nenhum gênero encontrado.</p>}
     </div>
   );
 }
