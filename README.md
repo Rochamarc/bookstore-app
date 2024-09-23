@@ -1,6 +1,6 @@
 # BookStore
 
-### A bookstore site made just to deal with my insomnia, enjoy!
+### A personal bookstore app, enjoy!
 
 ## Stack
 
