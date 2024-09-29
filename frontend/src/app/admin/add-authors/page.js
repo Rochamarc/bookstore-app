@@ -22,7 +22,7 @@ export default function AddAuthor() {
     };
 
     try {
-      const res = await fetch(`${API_DEFAULT_HOST}/authors/`, {
+      const res = await fetch(`${API_DOCKER_HOST }/authors/`, {
         method: 'POST',
         dataType: 'Json',
         headers: {

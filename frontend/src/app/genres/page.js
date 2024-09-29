@@ -4,7 +4,7 @@ export default async function Genres() {
   let genres = [];
 
   try {
-    const res = await fetch(`${API_DEFAULT_HOST}/genres/?format=json`, {
+    const res = await fetch(`${API_DOCKER_HOST }/genres/?format=json`, {
       cache: 'no-store',
     });
 

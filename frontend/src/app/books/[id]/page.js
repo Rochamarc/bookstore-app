@@ -3,7 +3,7 @@ import BookCard from "@/app/components/BookCard";
 
 // Função para buscar os dados do livro
 async function getBookData(id) {
-  const res = await fetch(`${API_DEFAULT_HOST}/books/${id}/?format=json`, {
+  const res = await fetch(`${API_DOCKER_HOST }/books/${id}/?format=json`, {
     cache: 'no-store',
   });
 
