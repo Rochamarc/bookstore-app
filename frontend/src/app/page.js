@@ -9,16 +9,16 @@ export default async function Home() {
   let genres = [];
 
   try {
-    const bookRes = await fetch(`${API_DEFAULT_HOST}/books/?format=json`, {
+    const bookRes = await fetch(`${API_DOCKER_HOST }/books/?format=json`, {
       cache: 'no-store',
     });
-    const authorRes = await fetch(`${API_DEFAULT_HOST}/authors/?format=json`, {
+    const authorRes = await fetch(`${API_DOCKER_HOST }/authors/?format=json`, {
       cache: 'no-store',
     });
-    const publisherRes = await fetch(`${API_DEFAULT_HOST}/publishers/?format=json`, {
+    const publisherRes = await fetch(`${API_DOCKER_HOST }/publishers/?format=json`, {
       cache: 'no-store',
     });
-    const genreRes = await fetch(`${API_DEFAULT_HOST}/genres/?format=json`, {
+    const genreRes = await fetch(`${API_DOCKER_HOST }/genres/?format=json`, {
       cache: 'no-store',
     });
 

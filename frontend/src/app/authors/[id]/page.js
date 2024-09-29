@@ -5,7 +5,7 @@ export default async function AuthorDetail({ params }) {
   let author = {};
 
   try {
-    const res = await fetch(`${API_DEFAULT_HOST}/authors/${id}/?format=json`, {
+    const res = await fetch(`${API_DOCKER_HOST }/authors/${id}/?format=json`, {
       cache: 'no-store',
     });
 

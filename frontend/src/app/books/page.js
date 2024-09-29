@@ -5,7 +5,7 @@ export default async function Books() {
   let books = [];
 
   try {
-    const res = await fetch(`${API_DEFAULT_HOST}/books/?format=json`, {
+    const res = await fetch(`${API_DOCKER_HOST }/books/?format=json`, {
       cache: 'no-store',
     });
 

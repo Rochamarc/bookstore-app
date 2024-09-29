@@ -4,7 +4,7 @@ export default async function Authors() {
   let authors = [];
 
   try {
-    const res = await fetch(`${API_DEFAULT_HOST}/authors/?format=json`, {
+    const res = await fetch(`${API_DOCKER_HOST }/authors/?format=json`, {
       cache: 'no-store',
     });
 
