@@ -1,8 +1,11 @@
+import { API_DEFAULT_HOST } from "@/app/utils/apiConfig";
+import BookCard from "../components/BookCard";
+
 export default async function Books() {
   let books = [];
 
   try {
-    const res = await fetch('http://backend:8000/books/books/?format=json', {
+    const res = await fetch(`${API_DEFAULT_HOST}/books/?format=json`, {
       cache: 'no-store',
     });
 
@@ -21,21 +24,10 @@ export default async function Books() {
       {books.length > 0 ? (
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', padding: '20px' }}>
           {books.map((book) => (
-            <div key={book.url} style={{
-              backgroundColor: '#282828',
-              border: '1px solid #4f4f4f',
-              margin: '10px',
-              padding: '20px',
-              width: '300px',
-              borderRadius: '8px',
-              boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-              color: '#f9f9f9',
-            }}>
-              <h2 style={{ fontFamily: 'Georgia, serif', fontSize: '24px', color: '#9e9e9e' }}>{book.title}</h2>
-              <a href={`/books/${book.url.split('/').slice(-2, -1)}`} style={{ textDecoration: 'none', color: '#9e9e9e' }}>
-                Ver Detalhes do Livro
-              </a>
-            </div>
+            
+            // Show a book
+            <BookCard key={book.url} book={book} />
+            
           ))}
         </div>
       ) : <p>Nenhum livro encontrado.</p>}
