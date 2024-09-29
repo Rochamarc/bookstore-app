@@ -1,8 +1,10 @@
+import { API_DOCKER_HOST } from "@/app/utils/apiConfig";
+
 export default async function Publishers() {
   let publishers = [];
 
   try {
-    const res = await fetch('http://backend:8000/books/publishers/?format=json', {
+    const res = await fetch(`${API_DEFAULT_HOST}/publishers/?format=json`, {
       cache: 'no-store',
     });
 

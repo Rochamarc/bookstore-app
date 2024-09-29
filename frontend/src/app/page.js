@@ -1,4 +1,4 @@
-import { API_DEFAULT_HOST } from "@/app/utils/apiConfig";
+import { API_DOCKER_HOST } from "@/app/utils/apiConfig";
 import { shuffle } from "./utils/functions";
 import BookCard from "./components/BookCard";
 
