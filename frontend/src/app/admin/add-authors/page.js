@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import NavBar from '@/app/components/NavBar';
 
+import { API_DOCKER_HOST } from "@/app/utils/apiConfig";
+
+
 export default function AddAuthor() {
   const [name, setName] = useState('');
   const [nationality, setNationality] = useState('');
@@ -19,7 +22,7 @@ export default function AddAuthor() {
     };
 
     try {
-      const res = await fetch('http://backend:8000/books/authors/', {
+      const res = await fetch(`${API_DEFAULT_HOST}/authors/`, {
         method: 'POST',
         dataType: 'Json',
         headers: {

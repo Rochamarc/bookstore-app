@@ -1,10 +1,11 @@
+import { API_DOCKER_HOST } from "@/app/utils/apiConfig";
 
 export default async function AuthorDetail({ params }) {
   const { id } = params;
   let author = {};
 
   try {
-    const res = await fetch(`http://backend:8000/books/authors/${id}/?format=json`, {
+    const res = await fetch(`${API_DEFAULT_HOST}/authors/${id}/?format=json`, {
       cache: 'no-store',
     });
 
