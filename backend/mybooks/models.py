@@ -66,6 +66,8 @@ class Edition(models.Model):
     
     book = models.ForeignKey(Book, related_name='book_editions' ,on_delete=models.CASCADE)
 
+    book_cover = models.TextField(null=True)
+
     created_at = models.DateTimeField(auto_now=True)
     updated_at = models.DateTimeField(auto_now=True)
 
